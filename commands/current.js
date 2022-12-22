@@ -6,7 +6,7 @@ module.exports = {
     .setName('current')
     .setDescription('Gets the current number the bot is tracking'),
     async execute(interaction) {
-        let currentNumber = parseInt(fs.readFileSync('number.txt'));
+        let currentNumber = parseInt(fs.readFileSync('number'));
         await interaction.reply(`The current number is ${currentNumber}`);
     },
 }
