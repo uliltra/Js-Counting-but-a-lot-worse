@@ -23,9 +23,9 @@ for (const file of commandFiles) {
 client.once(Events.ClientReady, c => {
     console.log(`Ready! Logged in as ${c.user.tag}`);
     if (Math.floor(Math.random() * 100) == 0) {
-        fs.writeFileSync('number.txt', Math.floor(Math.random() * 1000).toString());
+        fs.writeFileSync('number', Math.floor(Math.random() * 1000).toString());
     }
-    let currentNumber = parseInt(fs.readFileSync('number.txt'));
+    let currentNumber = parseInt(fs.readFileSync('number'));
     for (let i = 0; i < client.channels.cache.size; i++) {
         if (client.channels.cache.at(i).name.includes('counting')) {
             client.channels.cache.at(i).send(`The current number is ${currentNumber}.`);
@@ -65,9 +65,9 @@ client.on('messageCreate', async message => {
     if (isNaN(message.content) || message.attachments.size) {
         return;
     }
-    let currentNumber = parseInt(fs.readFileSync('number.txt'));
+    let currentNumber = parseInt(fs.readFileSync('number'));
     if (parseInt(message.content) !== currentNumber + 1) {
-        fs.writeFileSync('number.txt', '0');
+        fs.writeFileSync('number', '0');
         await message.react('🗿');
         await message.reply(insults[Math.floor(Math.random() * insults.length)])
         console.log('failure');
@@ -75,7 +75,7 @@ client.on('messageCreate', async message => {
     } else {
         currentNumber++;
         let newNumber = currentNumber++;
-        fs.writeFileSync('number.txt', newNumber.toString());
+        fs.writeFileSync('number', newNumber.toString());
         await message.react('🅱️');
         console.log(newNumber);
         return;
