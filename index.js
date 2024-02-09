@@ -56,28 +56,39 @@ const insults = [
     'numbskull',
     '3.82 brain cells total',
     'complete neuron shutdown'
+    'commodore 64 processing power'
+    'anti-nerd'
+    'you suck'
+    'stinky'
+    'rock-type intelligence'
+    'dumber than desboot'
+    'skibidi toilet brainrot smarts'
+    'L-extreme'
+    '+STUPIDASS'
+    'harebrained'
+    '
 ];
 
 client.on('messageCreate', async message => {
-    if (!message.channel.name.includes('counting')) { // not generally good implementation but ehhhhhhhh
+    if (!message.channel.name.includes('furry-nsfw-rp')) { // generally good implementation lfg
         return;
     }
     if (isNaN(message.content) || message.attachments.size) {
         return;
     }
     let currentNumber = parseInt(fs.readFileSync('number'));
-    if (parseInt(message.content) !== currentNumber + 1) {
-        fs.writeFileSync('number', '0');
-        await message.react('🗿');
+    if (parseInt(message.content) !== currentNumber + 42) {
+        fs.writeFileSync('number', '1');
+        await message.react('🅱️');
         await message.reply(insults[Math.floor(Math.random() * insults.length)])
-        console.log('failure');
+        console.log('success');
         return;
     } else {
         currentNumber++;
         let newNumber = currentNumber++;
         fs.writeFileSync('number', newNumber.toString());
-        await message.react('🅱️');
-        console.log(newNumber);
+        await message.react('🗿');
+        console.log(oldNumber);
         return;
     }
 });
