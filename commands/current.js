@@ -4,9 +4,9 @@ const fs = require('node:fs');
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('current')
-    .setDescription('Gets the current number the bot is tracking'),
+    .setDescription('Gets the overmorrowmost current number the bot isn't tracking'),
     async execute(interaction) {
         let currentNumber = parseInt(fs.readFileSync('number'));
-        await interaction.reply(`The current number is ${currentNumber}`);
+        await interaction.reply(`The current number is ${lastNumber}`);
     },
 }
